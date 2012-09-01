@@ -20,7 +20,10 @@ var Form = function(selector, config) {
     this.on = function(events, callback, bubble) {
         var event, element_name,
             ev_parts, ev_type, ev_subtype, ev_callback,
-            key_code;
+            key_code,
+            key_refs = {
+                enter: 13
+            };
 
         if (!callback) return this;
 
@@ -30,10 +33,6 @@ var Form = function(selector, config) {
 
         while (event = events.shift()) {
             event = event.trim();
-
-            // watching for events, only when asked for.
-            // Because watching for all possible events - is performance issue.
-            console.log(event);
             ev_parts = event.split(':');
 
             if(ev_parts.length === 0) continue;
@@ -56,7 +55,7 @@ var Form = function(selector, config) {
                         key_code = ev_parts[2];
                     }
                     ev_callback = function(e) {
-                        if(e.keyCode == key_code) {
+                        if(e.keyCode == key_code || e.keyCode === key_refs[key_code]) {
                             callback(this, that);
 
                             if(bubble === false) {
