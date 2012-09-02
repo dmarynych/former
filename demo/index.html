@@ -29,15 +29,23 @@
             <form id="form" action="">
                 <div class="span4">
 
-                    <label for="form_title">Title</label>
-                    <input type="text" name="title" id="form_title" />
+                    <div class="control-group">
+                        <label for="form_title">Title</label>
+                        <div class="controls">
+                            <input type="email" name="title" required id="form_title" />
+                        </div>
+                    </div>
 
-                    <label for="form_category">Category</label>
-                    <select name="category" id="form_category" style="width: 150px;">
-                        <option value="0">First</option>
-                        <option value="1">Second</option>
-                        <option value="2">Third</option>
-                    </select>
+                    <div class="control-group">
+                        <label for="form_category">Category</label>
+                        <div class="controls">
+                            <select name="category" id="form_category" required style="width: 150px;">
+                                <option value="0">First</option>
+                                <option value="1">Second</option>
+                                <option value="2">Third</option>
+                            </select>
+                        </div>
+                    </div>
 
 
                     <hr>

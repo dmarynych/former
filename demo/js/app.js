@@ -2,6 +2,8 @@
 $(function () {
     $('a').click(function() {
         $('#form_modal').modal();
+
+        return false;
     });
 });
 
@@ -23,7 +25,7 @@ var form = new Form('#form', {
 });
 
 // вешаем обработчик на 2 события: уход фокуса с инпута и нажатие энтера
-form.on('title:blur, title:keyup:enter', function(element) {console.log('yeah!')
+form.on('title:blur, title:keyup:enter', function(element) {
     var value, $el, search_url;
 
     $el = $(element);
@@ -56,3 +58,9 @@ form.on('title:blur, title:keyup:enter', function(element) {console.log('yeah!')
 form.on('submit', function(element, form) {
     console.log(form.getValues());
 });
+
+form.on('invalid', function(element, form) {
+    var err_inputs = form.element.find(':invalid');
+
+    $(err_inputs).parents('.control-group:first').addClass('error');
+}, false);
