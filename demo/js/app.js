@@ -9,8 +9,8 @@ $(function () {
 
 var form = new Form('#form', {
     // init input [name=title]
-    'file': function(element) {
-        $(element).uploadifive({
+    'file': function(input) {
+        $(input).uploadifive({
             'uploadScript': 'upload url here...',
             'dnd'          : true,
             'buttonText': 'or Upload File',
@@ -19,13 +19,21 @@ var form = new Form('#form', {
             }
         });
     },
-    'category': function(element) {
-        $(element).select2();
+    'category': function(input) {
+        $(input).select2();
     }
 });
 
+form.on('category:change', function(input, form) {
+    if(input.value == 1) {
+        form.getInput('title').removeAttr('required');
+    }
+    else {
+        form.getInput('title').attr('required', 'required');
+    }
+});
 // вешаем обработчик на 2 события: уход фокуса с инпута и нажатие энтера
-form.on('title:blur, title:keyup:enter', function(element) {
+form.on('title:blur title:keyup:enter', function(element) {
     var value, $el, search_url;
 
     $el = $(element);
@@ -37,18 +45,15 @@ form.on('title:blur, title:keyup:enter', function(element) {
         url: search_url,
         dataType: 'jsonp',
         success: function(d) {
-            var images, image, result;
+            var img, result;
 
             if( d.responseData.results && d.responseData.results !== 0 ) {
-                images = d.responseData.results;
-                result = images[0];
+                result = d.responseData.results[0];
 
-                image = $('<img />')
-                    .attr('src', result.unescapedUrl)
-                    .attr('title', result.titleNoFormatting)
-                    .data('image_index', 0);
+                img = $('<img />')
+                    .attr('src', result.unescapedUrl);
 
-                $('#image_container').html(image);
+                $('#image_container').html(img);
                 $('#form_image').fadeIn();
             }
         }
@@ -56,7 +61,7 @@ form.on('title:blur, title:keyup:enter', function(element) {
 }, false);
 
 form.on('submit', function(element, form) {
-    console.log(form.getValues());
+    console.log(form.getData());
 });
 
 form.on('invalid', function(element, form) {

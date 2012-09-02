@@ -44,7 +44,7 @@ var Form = function(selector, config) {
             bubble = true;
         }
 
-        events = events.split(',');
+        events = events.split(/\s+/);
 
 
         // Defining all callbacks outside loop
@@ -128,13 +128,12 @@ var Form = function(selector, config) {
                     }
                 }
             }
-
         }
 
         return this;
     };
 
-    this.getValues = function() {
+    this.getData = function() {
         var values = {},
             jqvals;
 
@@ -144,6 +143,10 @@ var Form = function(selector, config) {
         });
 
         return values;
+    };
+
+    this.getInput = function(name) {
+        return this.inputs.filter('[name='+ name +']');
     };
 };
 
