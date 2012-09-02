@@ -23,7 +23,7 @@ var form = new Form('#form', {
 });
 
 // вешаем обработчик на 2 события: уход фокуса с инпута и нажатие энтера
-form.on('title:blur, title:keyup:enter', function(element) {
+form.on('title:blur, title:keyup:enter', function(element) {console.log('yeah!')
     var value, $el, search_url;
 
     $el = $(element);
