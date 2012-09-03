@@ -18,8 +18,8 @@ Form HTML
     <input name="title" type="text" required />
 	<select name="category">
 		<option value="1">First</option>
-        <option value="2">Second</option>
-    </select>
+        	<option value="2">Second</option>
+    	</select>
 	<input name="title" type="file" />
 </form>
 ~~~
@@ -34,20 +34,22 @@ var form = new Former('#form_id', {
 });
 ~~~
 
-Changing required state of title, depending on selected category
+You can subscribe to any event, that will happen inside form, in simple way.
+Subscribing on select box change, then toggling required state of title
 ~~~
 form.on('category:change', function(input, form) {
     if(input.value == 1) {
-        form.getInput('title').removeAttr('required');
+    	form.getInput('title').attr('required', 'required');
     }
     else {
-        form.getInput('title').attr('required', 'required');
+        form.getInput('title').removeAttr('required');
     }
 });
 ~~~
 
 
-Search in google, for entered query
+Subscribing on two events - blur and hitting enter, on title field, separated by space. 
+Then search in google, for entered query.
 ~~~
 form.on('title:blur title:keyup:enter', function(element) {
     var value, $el, search_url;
@@ -91,6 +93,14 @@ form.on('invalid', function(element, form) {
     var err_inputs = form.element.find(':invalid');
 
     $(err_inputs).parents('.control-group:first').addClass('error');
+}, false);
+~~~
+
+
+Of course you can subscribe to validation error, in specific field in form
+~~~
+form.on('title:invalid', function(element, form) {
+    console.log('title is invalid')
 }, false);
 ~~~
 
