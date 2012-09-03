@@ -15,11 +15,11 @@ Let's look, how Former helps create this form:
 Form HTML
 ~~~
 <form id="form">
-    <input name="title" type="text" required />
+	<input name="title" type="text" required />
 	<select name="category">
 		<option value="1">First</option>
 		<option value="2">Second</option>
-    	</select>
+	</select>
 	<input name="title" type="file" />
 </form>
 ~~~
