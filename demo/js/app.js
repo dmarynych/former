@@ -7,7 +7,7 @@ $(function () {
     });
 });
 
-var form = new Form('#form', {
+var form = new Former('#form', {
     // init input [name=title]
     'file': function(input) {
         $(input).uploadifive({

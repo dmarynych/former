@@ -1,4 +1,4 @@
-var Form = function(selector, config) {
+var Former = function(selector, config) {
     var form_element = $(selector),
         fields = {},
         that = this;
