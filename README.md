@@ -6,9 +6,9 @@ Former simplifies common tasks in forms development:
 * Event handlers
 * From validation, with stantard api
 
-Lets look at code example. We will create form with this fields:
+As an example we will create form with this fields:
 * Title - when this field loses focus or user hits enter, we will ask google search api, with given keyword, and display first found image.
-* Category - select list, styled with [Select2 jQuery plugin](http://ivaynberg.github.com/select2). It will contain 2 categories - First and Second. If user selects first - then, title becomes required. If Second - title is not required.
+* Category - select list, styled with [Select2 jQuery plugin](http://ivaynberg.github.com/select2). It will contain 2 categories - First and Second. If user selects First - title becomes required, if Second - title is not required.
 
 Let's look, how Former helps create this form:
 
@@ -18,7 +18,7 @@ Form HTML
     <input name="title" type="text" required />
 	<select name="category">
 		<option value="1">First</option>
-        	<option value="2">Second</option>
+		<option value="2">Second</option>
     	</select>
 	<input name="title" type="file" />
 </form>
