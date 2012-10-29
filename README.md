@@ -13,7 +13,7 @@ As an example we will create form with this fields:
 Let's look, how Former helps create this form:
 
 Form HTML
-~~~
+~~~html
 <form id="form">
 	<input name="title" type="text" required />
 	<select name="category">
