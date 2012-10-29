@@ -25,7 +25,7 @@ Form HTML
 ~~~
 
 Form inititalisation
-~~~
+~~~js
 var form = new Former('#form_id', {
     // Category select box
     category: function(input) {
@@ -36,7 +36,7 @@ var form = new Former('#form_id', {
 
 You can subscribe to any event, that will happen inside form, in simple way.
 Subscribing on select box change, then toggling required state of title
-~~~
+~~~js
 form.on('category:change', function(input, form) {
     if(input.value == 1) {
     	form.getInput('title').attr('required', 'required');
@@ -50,7 +50,7 @@ form.on('category:change', function(input, form) {
 
 Subscribing on two events - blur and hitting enter, on title field, separated by space. 
 Then search in google, for entered query.
-~~~
+~~~js
 form.on('title:blur title:keyup:enter', function(element) {
     var value, $el, search_url;
 
@@ -80,7 +80,7 @@ form.on('title:blur title:keyup:enter', function(element) {
 
 
 Form submit handler
-~~~
+~~~js
 form.on('submit', function(element, form) {
     console.log(form.getData());
 });
@@ -88,7 +88,7 @@ form.on('submit', function(element, form) {
 
 
 Validation handler
-~~~
+~~~js
 form.on('invalid', function(element, form) {
     var err_inputs = form.element.find(':invalid');
 
@@ -98,7 +98,7 @@ form.on('invalid', function(element, form) {
 
 
 Of course you can subscribe to validation error, in specific field in form
-~~~
+~~~js
 form.on('title:invalid', function(element, form) {
     console.log('title is invalid')
 }, false);
