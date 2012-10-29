@@ -134,15 +134,15 @@ var Former = function(selector, config) {
     };
 
     this.getData = function() {
-        var values = {},
+        /*var values = {},
             jqvals;
 
         jqvals = form_element.serializeArray();
         $.each(jqvals, function(k, v) {
             values[v.name] = v.value;
-        });
+        });*/
 
-        return values;
+        return form_element.serializeArray();
     };
 
     this.getInput = function(name) {
